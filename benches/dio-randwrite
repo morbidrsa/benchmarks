@@ -1,0 +1,14 @@
+#!/bin/sh
+
+fio --group_reporting		\
+	--runtime=60		\
+	--size=16G		\
+	--name=$(basename $0)	\
+	--ioengine=libaio	\
+	--direct=1		\
+	--iodepth=64		\
+	--rw=randwrite		\
+	--blocksize=4k		\
+	--numjobs=$(getconf _NPROCESSORS_ONLN) \
+	--unlink=1		\
+	--filename=$1
