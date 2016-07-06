@@ -86,4 +86,6 @@ for bench in $BENCHES; do
 	sed -rne '/iops/ s/ +([[:alpha:]]+) ?:.*iops=([0-9]+).*/\1 \2/ p' $out | \
 	awk '{printf("%8s %8d iops", $1, $2)} END {printf("\n")}' | \
 	tee -a $terse
+
+	rm $out
 done
