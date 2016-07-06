@@ -1,12 +1,14 @@
 #!/bin/sh
 
+source ./common
+
 fio --group_reporting		\
-	--runtime=30		\
-	--size=16G		\
+	--runtime=$RTIME	\
+	--size=$SIZE		\
 	--name=$(basename $0)	\
 	--ioengine=libaio	\
 	--direct=1		\
-	--numjobs=$(getconf _NPROCESSORS_ONLN) \
+	--numjobs=$JOBS		\
 	--rw=write		\
 	--blocksize=4k		\
 	--create_on_open=1	\
