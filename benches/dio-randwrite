@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source ./common
+source "$(dirname $0)/common"
 
 fio --group_reporting		\
 	--runtime=$RTIME	\
