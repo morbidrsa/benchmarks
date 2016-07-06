@@ -1,0 +1,6 @@
+Run a number of benchmarks
+
+Currently these benchmarks are implemented:
+* dio-append
+* dio-randread
+* dio-randwrite
