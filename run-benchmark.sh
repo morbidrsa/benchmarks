@@ -10,6 +10,8 @@ BENCHES="		\
 	dio-randwrite	\
 	dio-append"
 OUT=""
+SIZE="16G"
+JOBS=$(getconf _NPROCESSORS_ONLN)
 
 usage()
 {
@@ -19,7 +21,7 @@ usage()
 	echo "    -o outdir        Directory for results (default create)" >&2
 }
 
-while getopts "?hf:o:b:" arg; do
+while getopts "?hf:o:b:s:j:" arg; do
 	case $arg in
 		h)
 			usage
@@ -33,6 +35,12 @@ while getopts "?hf:o:b:" arg; do
 			;;
 		b)
 			BENCHES=$OPTARG
+			;;
+		j)
+			JOBS=$OPTARG
+			;;
+		s)
+			SIZE=$OPTARG
 			;;
 	esac
 done
@@ -69,7 +77,7 @@ model=$(sg_inq $devname | grep " Product identification:" | \
 for bench in $BENCHES; do
 	out="$bench-$(echo $FILE | tr '/' '-' | tr ' ' '-')"
 	echo "$bench:" | tee -a $terse
-	$BENCHDIR/$bench $FILE > $out
+	$BENCHDIR/$bench -j $JOBS -s $SIZE $FILE > $out
 
 	echo "**** Device $devname ($vendor $model) benchmark $bench:" >> $full
 	cat $out >> $full
