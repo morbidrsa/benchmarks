@@ -49,7 +49,7 @@ if [ -z "$OUT" ]; then
 	done
 fi
 
-mkdir $OUT
+mkdir -p $OUT
 terse=$OUT/terse
 full=$OUT/full
 
