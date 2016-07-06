@@ -21,7 +21,7 @@ usage()
 
 while getopts "?hf:o:b:" arg; do
 	case $arg in
-		h|?)
+		h)
 			usage
 			exit 0
 			;;
