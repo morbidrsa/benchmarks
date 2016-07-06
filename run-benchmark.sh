@@ -59,7 +59,7 @@ truncate --size 0 $full
 if [ -b $FILE ]; then
 	devname=$FILE
 else
-	devname=$(df $FILE | cut -d ' ' -f 1)
+	devname=$(df $(dirname $FILE) | tail -1 | cut -d ' ' -f 1)
 fi
 vendor=$(sg_inq $devname | grep "Vendor identification:" | \
 	cut -d ':' -f 2 | sed 's/ //')
