@@ -3,7 +3,7 @@
 set -o nounset
 set -o errexit
 
-BENCHFILE="benches"
+BENCHDIR="benches"
 FILE="$(pwd)/test.dat"
 BENCHES="		\
 	dio-randread	\
@@ -69,8 +69,7 @@ model=$(sg_inq $devname | grep " Product identification:" | \
 for bench in $BENCHES; do
 	out="$bench-$(echo $FILE | tr '/' '-' | tr ' ' '-')"
 	echo "$bench:" | tee -a $terse
-	echo "$bench:" | tee -a $full
-	$BENCHES/$bench $FILE > $out
+	$BENCHDIR/$bench $FILE > $out
 
 	echo "**** Device $devname ($vendor $model) benchmark $bench:" >> $full
 	cat $out >> $full
