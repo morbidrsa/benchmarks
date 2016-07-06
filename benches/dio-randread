@@ -10,5 +10,5 @@ fio --group_reporting		\
 	--rw=randread		\
 	--blocksize=4k		\
 	--numjobs=$(getconf _NPROCESSORS_ONLN) \
-	--unlink=1		\
+	--unlink=1=1		\
 	--filename=$1

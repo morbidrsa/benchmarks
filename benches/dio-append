@@ -11,6 +11,6 @@ fio --group_reporting		\
 	--blocksize=4k		\
 	--create_on_open=1	\
 	--file_append=1		\
-	--unlink		\
+	--unlink=1		\
 	--filename=$1
 
