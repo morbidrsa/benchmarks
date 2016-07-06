@@ -1,0 +1,21 @@
+#!/bin/sh
+
+SIZE=16G
+JOBS=$(getconf _NPROCESSORS_ONLN)
+RTIME=30
+
+while getopts "s:j:r:" arg; do
+	case $arg in
+		s)
+			SIZE=$OPTARG
+			;;
+		j)
+			JOBS=$OPTARG
+			;;
+		r)
+			RTIME=$OPTARG
+			;;
+	esac
+done
+
+shift $((OPTIND - 1))
